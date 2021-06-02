@@ -8,7 +8,6 @@ import xyz.bolitao.cloudmall.user.model.entity.User;
  * @author boli.tao
  */
 public interface UserService {
-    User getUser();
 
     void register(String username, String password) throws ImoocMallException;
 

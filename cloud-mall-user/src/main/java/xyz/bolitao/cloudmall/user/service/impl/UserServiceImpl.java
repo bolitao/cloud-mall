@@ -23,11 +23,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser() {
-        return userMapper.selectByPrimaryKey(1);
-    }
-
-    @Override
     public void register(String username, String password) throws ImoocMallException {
         User user = userMapper.selectByName(username);
         if (user != null) {

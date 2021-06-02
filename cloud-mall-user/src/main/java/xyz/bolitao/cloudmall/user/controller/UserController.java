@@ -30,12 +30,6 @@ public class UserController {
     }
 
     @ResponseBody
-    @GetMapping("/test")
-    public User personalPage() {
-        return userService.getUser();
-    }
-
-    @ResponseBody
     @PostMapping("/register")
     public ApiRestResponse<String> register(
             @RequestParam("username") String username,
