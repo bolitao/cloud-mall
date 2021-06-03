@@ -44,7 +44,7 @@ public class GlobalExceptionHandler {
 
     @ResponseBody
     @ExceptionHandler(IllegalArgumentException.class)
-    private ApiRestResponse<String> handle(IllegalArgumentException e) {
+    private ApiRestResponse<String> handleIllegalArgumentException(IllegalArgumentException e) {
         LOGGER.error(e.getMessage(), e);
         return ApiRestResponse.error(ImoocMallExceptionEnum.ILLEGAL_ARGUMENT.getCode(),
                 ImoocMallExceptionEnum.ILLEGAL_ARGUMENT.getMsg() + ": " + e.getMessage());

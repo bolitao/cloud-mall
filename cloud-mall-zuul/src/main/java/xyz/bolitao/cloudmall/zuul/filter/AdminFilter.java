@@ -52,10 +52,10 @@ public class AdminFilter extends ZuulFilter {
         HttpServletRequest request = context.getRequest();
         String requestURI = request.getRequestURI();
         // TODO: 过于片面
-        if (requestURI.contains("admin")) {
+        if (requestURI.contains("adminLogin")) {
             return false;
         }
-        return requestURI.contains("adminLogin");
+        return requestURI.contains("admin");
     }
 
     @Override
@@ -67,9 +67,11 @@ public class AdminFilter extends ZuulFilter {
         if (user == null) {
             // pass gateway
             currentContext.setSendZuulResponse(false);
+            currentContext.getResponse().setContentType("application/json");
+            currentContext.getResponse().setCharacterEncoding("UTF-8");
             try {
                 currentContext.setResponseBody(new ObjectMapper().writeValueAsString(ApiRestResponse.error(ImoocMallExceptionEnum.NEED_LOGIN)));
-                currentContext.setResponseStatusCode(HttpStatus.OK.value());
+                currentContext.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
             } catch (JsonProcessingException e) {
                 LOGGER.error("Failed to rewrite json response", e);
             }
@@ -78,9 +80,11 @@ public class AdminFilter extends ZuulFilter {
 
         if (!userFeignClient.checkAdminRole(user)) {
             currentContext.setSendZuulResponse(false);
+            currentContext.getResponse().setContentType("application/json");
+            currentContext.getResponse().setCharacterEncoding("UTF-8");
             try {
                 currentContext.setResponseBody(new ObjectMapper().writeValueAsString(ApiRestResponse.error(ImoocMallExceptionEnum.RESOURCE_NOT_PERMIT)));
-                currentContext.setResponseStatusCode(HttpStatus.OK.value());
+                currentContext.setResponseStatusCode(HttpStatus.FORBIDDEN.value());
             } catch (JsonProcessingException e) {
                 LOGGER.error("Failed to rewrite json response", e);
             }
