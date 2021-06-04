@@ -10,7 +10,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @SpringBootApplication
 @EnableRedisHttpSession
 @EnableFeignClients
-@MapperScan(basePackages = "xyz.bolitao.cloudmall.category.model.dao")
+@MapperScan(basePackages = {"xyz.bolitao.cloudmall.category.model.dao", "xyz.bolitao.cloudmall.product.model.dao"})
 @EnableCaching
 public class CategoryProductApp {
     public static void main(String[] args) {

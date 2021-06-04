@@ -77,8 +77,7 @@ public class CategoryServiceImpl implements CategoryService {
     public PageInfo<Category> listCategoryForAdmin(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize, "type, order_num");
         List<Category> categoryList = categoryMapper.selectList();
-        PageInfo<Category> categoryPageInfo = new PageInfo<>(categoryList);
-        return categoryPageInfo;
+        return new PageInfo<>(categoryList);
     }
 
     @Override
