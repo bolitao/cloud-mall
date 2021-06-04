@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,11 @@ public class ProductAdminController {
 
     private final ProductService productService;
 
+    @Value("${boli.file-upload-ip}")
+    String ip;
+    @Value("${boli.file-upload-port}")
+    Integer port;
+
     @Autowired
     public ProductAdminController(ProductService productService) {
         this.productService = productService;
@@ -69,13 +75,14 @@ public class ProductAdminController {
         }
         file.transferTo(destFile);
         // TODO: com
-        return ApiRestResponse.success(getHost(new URI(httpServletRequest.getRequestURL().toString())) + "/images/" + newFilename);
+        return ApiRestResponse.success(getHost(new URI(httpServletRequest.getRequestURL().toString())) + "/category" +
+                "-product/images/" + newFilename);
     }
 
     private URI getHost(URI uri) {
         URI effectiveURI;
         try {
-            effectiveURI = new URI(uri.getScheme(), uri.getUserInfo(), uri.getHost(), uri.getPort(), null, null, null);
+            effectiveURI = new URI(uri.getScheme(), uri.getUserInfo(), ip, port, null, null, null);
         } catch (URISyntaxException e) {
             LOGGER.error("Failed to get uri info", e);
             effectiveURI = null;
