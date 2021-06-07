@@ -3,10 +3,7 @@ package xyz.bolitao.cloudmall.user.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 import xyz.bolitao.cloudmall.common.common.ApiRestResponse;
 import xyz.bolitao.cloudmall.common.common.Constant;
@@ -115,5 +112,11 @@ public class UserController {
     @PostMapping("/checkAdminRole")
     public Boolean checkAdminRole(@RequestBody User user) {
         return userService.checkAdminRole(user);
+    }
+
+    @GetMapping("/getUser")
+    @ResponseBody
+    public User getUser(HttpSession session) {
+        return (User) session.getAttribute(Constant.IMOOC_MALL_USER);
     }
 }

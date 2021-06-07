@@ -37,4 +37,10 @@ public class ProductCustomController {
         PageInfo<Product> productPageInfo = productService.list4Custom(productListReqDTO);
         return ApiRestResponse.success(productPageInfo);
     }
+
+    @ApiOperation("前台 - 获取商品信息 for feign")
+    @GetMapping("/detail4feign")
+    public Product detail4feigh(@RequestParam Integer id) {
+        return productService.detail4Custom(id);
+    }
 }
