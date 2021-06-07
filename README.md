@@ -1,3 +1,3 @@
 # cloud-mall
 
-immoc mall spring boot 版
+immoc mall spring cloud 版
