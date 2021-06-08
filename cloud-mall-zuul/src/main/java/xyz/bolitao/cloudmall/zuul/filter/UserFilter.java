@@ -60,6 +60,8 @@ public class UserFilter extends ZuulFilter {
         if (user == null) {
             // pass gateway
             currentContext.setSendZuulResponse(false);
+            currentContext.getResponse().setContentType("application/json");
+            currentContext.getResponse().setCharacterEncoding("UTF-8");
             try {
                 currentContext.setResponseBody(new ObjectMapper().writeValueAsString(ApiRestResponse.error(ImoocMallExceptionEnum.NEED_LOGIN)));
             } catch (JsonProcessingException e) {

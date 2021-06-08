@@ -3,10 +3,7 @@ package xyz.bolitao.cloudmall.product.controller;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xyz.bolitao.cloudmall.common.common.ApiRestResponse;
 import xyz.bolitao.cloudmall.product.model.dto.ProductListReqDTO;
 import xyz.bolitao.cloudmall.product.model.entity.Product;
@@ -42,5 +39,10 @@ public class ProductCustomController {
     @GetMapping("/detail4feign")
     public Product detail4feigh(@RequestParam Integer id) {
         return productService.detail4Custom(id);
+    }
+
+    @PostMapping(value = "/updateStock")
+    public void updateStock(@RequestParam Integer productId, @RequestParam Integer stock) {
+        productService.updateStock(productId, stock);
     }
 }

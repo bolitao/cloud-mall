@@ -14,8 +14,6 @@ import xyz.bolitao.cloudmall.feign.UserFeignClient;
 import java.util.List;
 
 /**
- * userFeignClient.getUser() 不用判空是因为已经有 zuul filter 的前置拦截
- *
  * @author boli.tao
  */
 @RestController

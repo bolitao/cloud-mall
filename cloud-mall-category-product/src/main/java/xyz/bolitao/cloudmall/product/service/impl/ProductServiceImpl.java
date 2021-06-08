@@ -125,6 +125,14 @@ public class ProductServiceImpl implements ProductService {
         return new PageInfo<>(productList);
     }
 
+    @Override
+    public void updateStock(Integer productId, Integer stock) {
+        Product product = new Product();
+        product.setId(productId);
+        product.setStock(stock);
+        productMapper.updateByPrimaryKeySelective(product);
+    }
+
     private void getCategoryIds(List<CategoryVO> categoryVOList, List<Integer> categoryIds) {
         // TODO: com
         for (CategoryVO categoryVO : categoryVOList) {
