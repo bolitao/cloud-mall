@@ -11,7 +11,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
  * @author boli.tao
  */
 @SpringBootApplication
-@MapperScan(basePackages = {"xyz.bolitao.cloudmall.cart.model.dao"})
+@MapperScan(basePackages = {"xyz.bolitao.cloudmall.cart.model.dao", "xyz.bolitao.cloudmall.order.model.dao"})
 @EnableRedisHttpSession
 @EnableFeignClients
 @EnableCaching

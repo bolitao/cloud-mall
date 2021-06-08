@@ -174,6 +174,7 @@ public class OrderServiceImpl implements OrderService {
         String ip = InetAddress.getLocalHost().getHostAddress();
         String address = ip + ":" + request.getLocalPort();
         String payUrl = "http://" + address + "/pay?orderNo=" + orderNo;
+        // TODO: 图片转为经过网关的形式
         QRCodeGenerator.generateQRCodeImage(payUrl, 350, 350, CategoryProductConstant.FILE_UPLOAD_DIR + orderNo +
                 ".png");
         return "http://" + address + "/images/" + orderNo + ".png";
